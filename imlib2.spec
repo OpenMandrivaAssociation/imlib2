@@ -7,7 +7,7 @@
 %{?_with_mmx: %global enable_mmx 1}
 
 Name:		%{name}
-Version: 1.4.0.000
+Version:	%{version}
 Release:	%{release}
 Summary:	Powerful image loading and rendering library
 License:	BSD
