@@ -1,5 +1,5 @@
 %define	name	imlib2
-%define	version	1.4.0
+%define	version 1.4.0
 %define release	%mkrel 1
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
@@ -7,7 +7,7 @@
 %{?_with_mmx: %global enable_mmx 1}
 
 Name:		%{name}
-Version:	%{version}
+Version: 1.4.0.000
 Release:	%{release}
 Summary:	Powerful image loading and rendering library
 License:	BSD
