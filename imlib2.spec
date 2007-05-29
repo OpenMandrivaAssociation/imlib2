@@ -1,6 +1,6 @@
 %define	name	imlib2
 %define version 1.4.0.000
-%define release	%mkrel 2
+%define release	%mkrel 3
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define enable_mmx 0
