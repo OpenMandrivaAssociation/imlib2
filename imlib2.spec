@@ -1,8 +1,9 @@
 %define	name	imlib2
 %define version 1.4.0.000
-%define release	%mkrel 3
+%define release	%mkrel 4
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
+%define develname %mklibname %name -d
 %define enable_mmx 0
 %{?_with_mmx: %global enable_mmx 1}
 
@@ -47,14 +48,16 @@ standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
 
-%package -n	%{libname}-devel
+%package -n	%develname
 Summary:	Imlib2 headers, static libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
+# (tv) only ever released major was 1, so keep smooth upgrading for old distro in future releases:
+Obsoletes:  %mklibname %{name}_ 1 -d
 
-%description -n	%{libname}-devel
+%description -n	%develname
 Imlib2 is an advanced replacement library for libraries like libXpm that
 provides many more features with much greater flexibility and speed than
 standard libraries, including font rasterization, rotation, RGBA space
@@ -127,7 +130,7 @@ rm -rf %{buildroot}
 %doc AUTHORS README COPYING
 %{_libdir}/lib*.so.*
 
-%files -n %{libname}-devel
+%files -n %develname
 %defattr(-,root,root,0755)
 %doc AUTHORS README COPYING ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_bindir}/*
