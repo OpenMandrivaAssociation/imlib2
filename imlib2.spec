@@ -1,6 +1,6 @@
 %define	name	imlib2
 %define version 1.4.0.003
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
@@ -18,6 +18,11 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 Source0:	http://prdownloads.sourceforge.net/enlightenment/%{name}-%{version}.tar.bz2
 Patch0:		imlib2-1.2.2-64bit-tiff-loader.patch
+Patch1:     imlib2-1.2.2-CVE-2006-4809.patch
+# (misc) not sure if needed, as this is a cleaned version of the original patch of
+# bug 27005. Someone should check with upstream
+Patch2:     imlib2-1.2.2-CVE-2006-4807-4808.patch
+Patch3:     imlib2-1.2.2-CVE-2006-4806.patch
 BuildRequires:	freetype2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
@@ -97,6 +102,9 @@ This package contains Imlib2 data.
 %prep
 %setup -q
 #%patch0 -p1 -b .64bit
+%patch1 -p1 
+%patch2 -p0 
+%patch3 -p0 
 
 %build
 %configure2_5x \
