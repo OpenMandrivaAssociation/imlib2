@@ -14,6 +14,7 @@ Summary:	Powerful image loading and rendering library
 License:	BSD
 URL:		http://enlightenment.org/Libraries/Imlib2/
 Group:		System/Libraries
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 Source0:	http://prdownloads.sourceforge.net/enlightenment/%{name}-%{version}.tar.bz2
 Patch0:		imlib2-1.2.2-64bit-tiff-loader.patch
