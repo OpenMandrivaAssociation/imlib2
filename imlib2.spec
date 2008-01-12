@@ -1,6 +1,6 @@
 %define	name	imlib2
 %define version 1.4.0.003
-%define release	%mkrel 2
+%define release	%mkrel 3
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
