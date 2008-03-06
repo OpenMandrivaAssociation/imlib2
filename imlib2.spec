@@ -15,8 +15,9 @@ License:	BSD
 URL:		http://enlightenment.org/Libraries/Imlib2/
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}
-
-Source0:	http://prdownloads.sourceforge.net/enlightenment/%{name}-%{version}.tar.bz2
+# Same as upstream tarball except the copyright-breaking /data/fonts
+# subdirectory is entirely removed - AdamW 2008/03
+Source0:	http://prdownloads.sourceforge.net/enlightenment/%{name}-%{version}-fontclean.tar.bz2
 Patch0:		imlib2-1.2.2-64bit-tiff-loader.patch
 Patch1:     imlib2-1.2.2-CVE-2006-4809.patch
 # (misc) not sure if needed, as this is a cleaned version of the original patch of
