@@ -1,6 +1,6 @@
 %define	name	imlib2
 %define version 1.4.1.000
-%define release	%mkrel 2
+%define release	%mkrel 3
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
@@ -27,6 +27,7 @@ Patch3:     imlib2-1.2.2-CVE-2006-4806.patch
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.0-fontclean.patch
+Patch5:		imlib2-1.4.1.000-CVE-2008-2426.patch
 BuildRequires:	freetype2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
@@ -110,6 +111,7 @@ This package contains Imlib2 data.
 %patch2 -p0 
 %patch3 -p0 
 %patch4 -p1 -b .font
+%patch5 -p1
 
 %build
 # Needed by patch4
