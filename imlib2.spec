@@ -1,6 +1,6 @@
 %define	name	imlib2
-%define version 1.4.1.000
-%define release	%mkrel 4
+%define version 1.4.2
+%define release	%mkrel 1
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
@@ -18,22 +18,17 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}
 # Same as upstream tarball except the copyright-breaking /data/fonts
 # subdirectory is entirely removed - AdamW 2008/03
 Source0:	http://download.enlightenment.org/snapshots/2008-01-25/%name-%version.tar.bz2
-Patch0:		imlib2-1.2.2-64bit-tiff-loader.patch
-Patch1:     imlib2-1.2.2-CVE-2006-4809.patch
-# (misc) not sure if needed, as this is a cleaned version of the original patch of
-# bug 27005. Someone should check with upstream
-Patch2:     imlib2-1.2.2-CVE-2006-4807-4808.patch
-Patch3:     imlib2-1.2.2-CVE-2006-4806.patch
+Patch0:		imlib2-1.4.2-cve-2008-5187.patch
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
-Patch4:		imlib2-1.4.0-fontclean.patch
-Patch5:		imlib2-1.4.1.000-CVE-2008-2426.patch
+Patch4:		imlib2-1.4.2-fontclean.patch
 BuildRequires:	freetype2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	ungif-devel
-BuildRequires:	X11-devel
+BuildRequires:	libx11-devel libxext-devel
+BuildRequires:	id3tag-devel
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -106,16 +101,11 @@ This package contains Imlib2 data.
 
 %prep
 %setup -q
-#%patch0 -p1 -b .64bit
-%patch1 -p1 
-%patch2 -p0 
-%patch3 -p0 
+%patch0 -p1 -b .cve-2008-5187
 %patch4 -p1 -b .font
-%patch5 -p1
 
 %build
-# Needed by patch4
-autoreconf
+autoreconf -fi
 %configure2_5x \
 %if %enable_mmx
 	--enable-mmx=yes \
