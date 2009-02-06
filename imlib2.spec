@@ -11,7 +11,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Summary:	Powerful image loading and rendering library
-License:	BSD
+License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}
