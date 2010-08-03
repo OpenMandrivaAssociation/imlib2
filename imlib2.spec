@@ -1,6 +1,6 @@
 %define	name	imlib2
-%define version 1.4.2
-%define release	%mkrel 3
+%define version 1.4.4
+%define release	%mkrel 1
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
@@ -17,8 +17,7 @@ Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 # Same as upstream tarball except the copyright-breaking /data/fonts
 # subdirectory is entirely removed - AdamW 2008/03
-Source0:	http://download.enlightenment.org/snapshots/2008-01-25/%name-%version.tar.bz2
-Patch0:		imlib2-1.4.2-cve-2008-5187.patch
+Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%version/%name-%version.tar.bz2
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.2-fontclean.patch
@@ -101,7 +100,6 @@ This package contains Imlib2 data.
 
 %prep
 %setup -q
-%patch0 -p1 -b .cve-2008-5187
 %patch4 -p1 -b .font
 
 %build
