@@ -1,6 +1,6 @@
 %define	name	imlib2
 %define version 1.4.4
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
@@ -143,7 +143,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,0755)
 %doc AUTHORS README COPYING ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_bindir}/*
-%multiarch %{_bindir}/imlib2-config
+%{_bindir}/imlib2-config
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
 %{_libdir}/lib*.la
