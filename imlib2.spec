@@ -89,7 +89,7 @@ This package contains Imlib2 data.
 
 %prep
 %setup -q
-%patch4 -p1 -b .font
+%patch4 -p1 -b .font~
 
 %build
 autoreconf -fi
@@ -97,7 +97,6 @@ autoreconf -fi
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # remove files not bundled
@@ -111,7 +110,7 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 %{_libdir}/lib*.so.*
 
 %files -n %{develname}
-%doc AUTHORS README COPYING ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
+%doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_bindir}/*
 %{_bindir}/imlib2-config
 %{_libdir}/lib*.so
@@ -121,13 +120,10 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 %{_includedir}/*
 
 %files -n %{libname}-filters
-%doc AUTHORS README COPYING
 %{_libdir}/%{name}/filters
 
 %files -n %{libname}-loaders
-%doc AUTHORS README COPYING
 %{_libdir}/%{name}/loaders
 
 %files data
-%doc AUTHORS README COPYING
 %{_datadir}/%{name}
