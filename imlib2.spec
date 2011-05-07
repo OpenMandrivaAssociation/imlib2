@@ -1,8 +1,6 @@
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
-%define enable_mmx 0
-%{?_with_mmx: %global enable_mmx 1}
 
 Name:		imlib2
 Version:	1.4.4
@@ -99,13 +97,7 @@ This package contains Imlib2 data.
 
 %build
 autoreconf -fi
-%configure2_5x \
-%if %enable_mmx
-	--enable-mmx=yes \
-%else
-	--enable-mmx=no \
-%endif
-
+%configure2_5x
 %make
 
 %install
