@@ -9,7 +9,6 @@ Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
 Group:		System/Libraries
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 # Same as upstream tarball except the copyright-breaking /data/fonts
 # subdirectory is entirely removed - AdamW 2008/03
 Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%version/%name-%version.tar.bz2
@@ -30,9 +29,6 @@ provides many more features with much greater flexibility and speed than
 standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
-Build Options:
---with mmx      Enable mmx cpu detection (10% - 30% speedup)
-
 %package -n	%{libname}
 Summary:	Powerful image loading and rendering library
 Group:		System/Libraries
@@ -47,14 +43,14 @@ standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
 
-%package -n	%develname
+%package -n	%{develname}
 Summary:	Imlib2 headers, static libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 # (tv) only ever released major was 1, so keep smooth upgrading for old distro in future releases:
-Obsoletes:  %mklibname %{name}_ 1 -d
+Obsoletes:	%mklibname %{name}_ 1 -d
 
 %description -n	%develname
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -83,7 +79,7 @@ Group:		System/Libraries
 This package contains Imlib2 image loader/saver for various graphic formats,
 such as jpeg, gif, tiff, xpm etc.
 
-%package data
+%package	data
 Summary:	Imlib2 data
 Group:		System/Libraries
 Requires:	%{libname} = %{version}-%{release}
@@ -110,24 +106,11 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 
 %multiarch_binaries %{buildroot}%{_bindir}/imlib2-config
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post  -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files -n %{libname}
-%defattr(-,root,root,0755)
 %doc AUTHORS README COPYING
 %{_libdir}/lib*.so.*
 
-%files -n %develname
-%defattr(-,root,root,0755)
+%files -n %{develname}
 %doc AUTHORS README COPYING ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_bindir}/*
 %{_bindir}/imlib2-config
@@ -138,18 +121,13 @@ rm -rf %{buildroot}
 %{_includedir}/*
 
 %files -n %{libname}-filters
-%defattr(-,root,root)
 %doc AUTHORS README COPYING
 %{_libdir}/%{name}/filters
 
 %files -n %{libname}-loaders
-%defattr(-,root,root)
 %doc AUTHORS README COPYING
 %{_libdir}/%{name}/loaders
 
 %files data
-%defattr(-,root,root)
 %doc AUTHORS README COPYING
 %{_datadir}/%{name}
-
-
