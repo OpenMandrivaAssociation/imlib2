@@ -1,15 +1,12 @@
-%define	name	imlib2
-%define version 1.4.4
-%define release	%mkrel 2
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
 %define develname %mklibname %name -d
 %define enable_mmx 0
 %{?_with_mmx: %global enable_mmx 1}
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		imlib2
+Version:	1.4.4
+Release:	3
 Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
@@ -75,7 +72,6 @@ that need %{name}.
 %package -n	%{libname}-filters
 Summary:	Imlib2 basic plugin filters set
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
 
 %description -n	%{libname}-filters
 This package contains Imlib2 basic set of plugin filters.
@@ -84,7 +80,6 @@ This package contains Imlib2 basic set of plugin filters.
 %package -n	%{libname}-loaders
 Summary:	Imlib2 loader for various graphic formats
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
 
 %description -n	%{libname}-loaders
 This package contains Imlib2 image loader/saver for various graphic formats,
