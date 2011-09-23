@@ -22,8 +22,10 @@ BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	ungif-devel
-BuildRequires:	libx11-devel libxext-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxext-devel
 BuildRequires:	id3tag-devel
+BuildRequires:	bzip2-devel
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -31,7 +33,7 @@ provides many more features with much greater flexibility and speed than
 standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
-%package -n	%{libname}
+%package -n %{libname}
 Summary:	Powerful image loading and rendering library
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
@@ -45,7 +47,7 @@ standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
 
-%package -n	%{develname}
+%package -n %{develname}
 Summary:	Imlib2 headers, static libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
@@ -64,14 +66,14 @@ This package contains various headers and static libraries for %{name}.
 You need this package if you want to compile or develop any applications
 that need %{name}.
 
-%package -n	%{libname}-filters
+%package -n %{libname}-filters
 Summary:	Imlib2 basic plugin filters set
 Group:		System/Libraries
 
 %description -n	%{libname}-filters
 This package contains Imlib2 basic set of plugin filters.
 
-%package -n	%{libname}-loaders
+%package -n %{libname}-loaders
 Summary:	Imlib2 loader for various graphic formats
 Group:		System/Libraries
 
@@ -79,13 +81,13 @@ Group:		System/Libraries
 This package contains Imlib2 image loader/saver for various graphic formats,
 such as jpeg, gif, tiff, xpm etc.
 
-%package	data
+%package data
 Summary:	Imlib2 data
 Group:		System/Libraries
 Requires:	%{libname} = %{version}-%{release}
 BuildArch:	noarch
 
-%description	data
+%description data
 This package contains Imlib2 data.
 
 %prep
@@ -95,7 +97,18 @@ This package contains Imlib2 data.
 
 %build
 autoreconf -fi
-%configure2_5x
+
+%configure2_5x \
+	--disable-static \
+	%ifarch x86_64
+	--enable-amd64 \
+	--disable-mmx \
+	%endif
+	%ifarch ix86
+	--disable-amd64 \
+	--enable-mmx \
+	%endif
+	--enable-visibility-hiding
 %make
 
 %install
@@ -109,14 +122,13 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 
 %files -n %{libname}
 %doc AUTHORS README COPYING
-%{_libdir}/lib*.so.*
+%{_libdir}/lib*.so.%{major}*
 
 %files -n %{develname}
 %doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_bindir}/*
 %{_bindir}/imlib2-config
 %{_libdir}/lib*.so
-%{_libdir}/lib*.a
 %{_libdir}/lib*.la
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
