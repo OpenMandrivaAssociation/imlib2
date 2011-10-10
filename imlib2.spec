@@ -3,8 +3,8 @@
 %define develname %mklibname %name -d
 
 Name:		imlib2
-Version:	1.4.4
-Release:	4
+Version:	1.4.5
+Release:	1
 Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
@@ -15,8 +15,6 @@ Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%version
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.2-fontclean.patch
-# (tpg) fix building against libpng15
-Patch5:		imlib2-1.4.4-libpng15.patch
 BuildRequires:	freetype2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	png-devel
@@ -93,7 +91,6 @@ This package contains Imlib2 data.
 %prep
 %setup -q
 %patch4 -p1 -b .font~
-%patch5 -p1 -b .png
 
 %build
 autoreconf -fi
