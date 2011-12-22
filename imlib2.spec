@@ -4,7 +4,7 @@
 
 Name:		imlib2
 Version:	1.4.5
-Release:	1
+Release:	2
 Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
