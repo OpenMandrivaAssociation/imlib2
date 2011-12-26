@@ -114,6 +114,7 @@ rm -rf %{buildroot}%{_datadir}/imlib2/data/
 
 %files -n %{develname}
 %doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
+%{multiarch_bindir}/imlib2-config
 %{_bindir}/imlib2-config
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
