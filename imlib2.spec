@@ -1,17 +1,17 @@
 %define major	1
 %define libname	%mklibname %{name}_ %{major}
-%define develname %mklibname %name -d
+%define develname %mklibname %{name} -d
 
 Name:		imlib2
 Version:	1.4.5
-Release:	2
+Release:	3
 Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
 Group:		System/Libraries
 # Same as upstream tarball except the copyright-breaking /data/fonts
 # subdirectory is entirely removed - AdamW 2008/03
-Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%version/%name-%version.tar.bz2
+Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.bz2
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.2-fontclean.patch
@@ -44,15 +44,15 @@ provides many more features with much greater flexibility and speed than
 standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
-
 %package -n %{develname}
-Summary:	Imlib2 headers, static libraries and documentation
+Summary:	Imlib2 headers, development libraries and documentation
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
 # (tv) only ever released major was 1, so keep smooth upgrading for old distro in future releases:
 Obsoletes:	%mklibname %{name}_ 1 -d
+# taken from fedora where the demos and data are simply removed
+Obsoletes:	%{name}-data
 
 %description -n	%{develname}
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -60,7 +60,7 @@ provides many more features with much greater flexibility and speed than
 standard libraries, including font rasterization, rotation, RGBA space
 rendering and blending, dynamic binary filters, scripting, and more.
 
-This package contains various headers and static libraries for %{name}.
+This package contains various headers and development libraries for %{name}.
 You need this package if you want to compile or develop any applications
 that need %{name}.
 
@@ -79,41 +79,32 @@ Group:		System/Libraries
 This package contains Imlib2 image loader/saver for various graphic formats,
 such as jpeg, gif, tiff, xpm etc.
 
-%package data
-Summary:	Imlib2 data
-Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
-BuildArch:	noarch
-
-%description data
-This package contains Imlib2 data.
-
 %prep
 %setup -q
 %patch4 -p1 -b .font~
-
-%build
 autoreconf -fi
 
+%build
 %configure2_5x \
 	--disable-static \
-	%ifarch x86_64
+%ifarch x86_64
 	--enable-amd64 \
 	--disable-mmx \
-	%endif
-	%ifarch ix86
+%endif
+%ifarch ix86
 	--disable-amd64 \
 	--enable-mmx \
-	%endif
+%endif
 	--enable-visibility-hiding
 %make
 
 %install
 %makeinstall_std
+find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
-# remove files not bundled
-rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
-	%{buildroot}%{_libdir}/%{name}/filters/*.a
+# remove demos and their dependencies
+rm -f %{buildroot}%{_bindir}/imlib2_*
+rm -rf %{buildroot}%{_datadir}/imlib2/data/
 
 %multiarch_binaries %{buildroot}%{_bindir}/imlib2-config
 
@@ -123,10 +114,8 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 
 %files -n %{develname}
 %doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
-%{_bindir}/*
 %{_bindir}/imlib2-config
 %{_libdir}/lib*.so
-%{_libdir}/lib*.la
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
 
@@ -135,6 +124,3 @@ rm -f	%{buildroot}%{_libdir}/%{name}/loaders/*.a \
 
 %files -n %{libname}-loaders
 %{_libdir}/%{name}/loaders
-
-%files data
-%{_datadir}/%{name}
