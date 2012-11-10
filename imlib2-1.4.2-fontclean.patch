@@ -1,0 +1,16 @@
+--- imlib2-1.4.2/configure.ac~	2008-10-21 04:43:12.000000000 +0200
++++ imlib2-1.4.2/configure.ac	2009-02-06 08:43:36.000000000 +0100
+@@ -524,7 +524,6 @@
+ src/modules/filters/Makefile
+ src/modules/loaders/Makefile
+ data/Makefile
+-data/fonts/Makefile
+ data/images/Makefile
+ doc/Makefile
+ imlib2-config
+--- imlib2-1.4.2/data/Makefile.am~	2008-08-17 11:39:14.000000000 +0200
++++ imlib2-1.4.2/data/Makefile.am	2009-02-06 08:43:48.000000000 +0100
+@@ -1,2 +1,2 @@
+ MAINTAINERCLEANFILES = Makefile.in
+-SUBDIRS = fonts images
++SUBDIRS = images
