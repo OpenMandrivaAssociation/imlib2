@@ -12,6 +12,7 @@ Group:		System/Libraries
 # Same as upstream tarball except the copyright-breaking /data/fonts
 # subdirectory is entirely removed - AdamW 2008/03
 Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.bz2
+Patch0:		imlib2-automake-1.13.patch
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.2-fontclean.patch
@@ -81,6 +82,7 @@ such as jpeg, gif, tiff, xpm etc.
 
 %prep
 %setup -q
+%patch0 -p1 -b .am13~
 %patch4 -p1 -b .font~
 autoreconf -fi
 
