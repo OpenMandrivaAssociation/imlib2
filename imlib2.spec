@@ -4,7 +4,7 @@
 
 Name:		imlib2
 Version:	1.4.5
-Release:	4
+Release:	5
 Summary:	Powerful image loading and rendering library
 License:	Imlib2
 URL:		http://enlightenment.org/Libraries/Imlib2/
@@ -16,6 +16,7 @@ Patch0:		imlib2-automake-1.13.patch
 # Drop data/fonts from the build, it only contains copyright-
 # infringing fonts - AdamW 2008/03 (#38258)
 Patch4:		imlib2-1.4.2-fontclean.patch
+Patch5:		imlib2-1.4.5-giflib5.patch
 BuildRequires:	jpeg-devel
 BuildRequires:	tiff-devel
 BuildRequires:	ungif-devel
@@ -84,6 +85,7 @@ such as jpeg, gif, tiff, xpm etc.
 %setup -q
 %patch0 -p1 -b .am13~
 %patch4 -p1 -b .font~
+%patch5 -p0 -b .giflib5~
 autoreconf -fi
 
 %build
