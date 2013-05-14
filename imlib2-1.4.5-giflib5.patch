@@ -1,5 +1,5 @@
---- src/modules/loaders/loader_gif.c.orig	2013-03-03 11:24:14.642984200 +0000
-+++ src/modules/loaders/loader_gif.c	2013-03-03 11:24:23.259984548 +0000
+--- ./src/modules/loaders/loader_gif.c.orig	2013-03-03 11:24:14.642984200 +0000
++++ ./src/modules/loaders/loader_gif.c	2013-03-03 11:24:23.259984548 +0000
 @@ -36,7 +36,7 @@
  #endif
     if (fd < 0)
