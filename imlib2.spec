@@ -5,7 +5,7 @@
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
 Version:	1.4.6
-Release:	4
+Release:	5
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
@@ -104,6 +104,7 @@ such as jpeg, gif, tiff, xpm etc.
 
 %prep
 %setup -q
+sed -i 's/@my_libs@//' imlib2-config.in
 %apply_patches
 autoreconf -fi
 
