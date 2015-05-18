@@ -5,7 +5,7 @@
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
 Version:	1.4.6
-Release:	5
+Release:	6
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
@@ -109,7 +109,7 @@ sed -i 's/@my_libs@//' imlib2-config.in
 autoreconf -fi
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 %ifarch x86_64
 	--enable-amd64 \
