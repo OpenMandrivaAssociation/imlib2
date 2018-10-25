@@ -69,7 +69,7 @@ that need %{name}.
 
 %files -n %{devname}
 %doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
-%{multiarch_bindir}/imlib2-config
+%{_bindir}/imlib2-config
 %{_bindir}/imlib2-config
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
@@ -103,9 +103,9 @@ such as jpeg, gif, tiff, xpm etc.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -p1
 sed -i 's/@my_libs@//' imlib2-config.in
-%apply_patches
+
 autoreconf -fi
 
 %build
@@ -120,14 +120,11 @@ autoreconf -fi
 	--enable-mmx \
 %endif
 	--enable-visibility-hiding
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 # remove demos and their dependencies
 rm -f %{buildroot}%{_bindir}/imlib2_*
 rm -rf %{buildroot}%{_datadir}/imlib2/data/
-
-%multiarch_binaries %{buildroot}%{_bindir}/imlib2-config
-
