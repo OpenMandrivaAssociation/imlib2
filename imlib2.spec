@@ -4,14 +4,13 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.4.6
-Release:	10
+Version:	1.7.4
+Release:	1
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
-Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
-Patch0:		imlib2-1.4.2-fontclean.patch
-Patch1:		imlib2-1.4.6-giflib51.patch
+Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.bz2
+
 BuildRequires:	bzip2-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	tiff-devel
