@@ -103,7 +103,7 @@ such as jpeg, gif, tiff, xpm etc.
 
 %prep
 %autosetup -p1
-sed -i 's/@my_libs@//' imlib2-config.in
+#sed -i 's/@my_libs@//' imlib2-config.in
 
 autoreconf -fi
 
