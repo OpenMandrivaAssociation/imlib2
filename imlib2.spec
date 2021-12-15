@@ -68,8 +68,6 @@ that need %{name}.
 
 %files -n %{devname}
 %doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
-%{_bindir}/imlib2-config
-%{_bindir}/imlib2-config
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
@@ -103,7 +101,7 @@ such as jpeg, gif, tiff, xpm etc.
 
 %prep
 %autosetup -p1
-sed -i 's/@my_libs@//' imlib2-config.in
+#sed -i 's/@my_libs@//' imlib2-config.in
 
 autoreconf -fi
 
