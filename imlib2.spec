@@ -4,7 +4,7 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.8.0
+Version:	1.9.1
 Release:	1
 License:	Imlib2
 Group:		System/Libraries
@@ -67,7 +67,6 @@ You need this package if you want to compile or develop any applications
 that need %{name}.
 
 %files -n %{devname}
-%doc ChangeLog doc/index.html doc/imlib2.gif doc/blank.gif
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*
@@ -102,6 +101,14 @@ such as jpeg, gif, tiff, xpm etc.
 %prep
 %autosetup -p1
 #sed -i 's/@my_libs@//' imlib2-config.in
+
+# WTG???
+mkdir test
+cat >test/Makefile.in <<EOF
+all:
+
+install:
+EOF
 
 autoreconf -fi
 
