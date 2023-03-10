@@ -4,7 +4,7 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.9.1
+Version:	1.11.0
 Release:	1
 License:	Imlib2
 Group:		System/Libraries
@@ -101,14 +101,6 @@ such as jpeg, gif, tiff, xpm etc.
 %prep
 %autosetup -p1
 #sed -i 's/@my_libs@//' imlib2-config.in
-
-# WTG???
-mkdir test
-cat >test/Makefile.in <<EOF
-all:
-
-install:
-EOF
 
 autoreconf -fi
 
