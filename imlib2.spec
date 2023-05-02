@@ -4,8 +4,8 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.11.0
-Release:	3
+Version:	1.11.1
+Release:	1
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
@@ -45,6 +45,7 @@ rendering and blending, dynamic binary filters, scripting, and more.
 %files -n %{libname}
 %doc AUTHORS README COPYING
 %{_libdir}/libImlib2.so.%{major}*
+%{_datadir}/imlib2
 
 #----------------------------------------------------------------------------
 
