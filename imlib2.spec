@@ -1,19 +1,20 @@
 %define major 1
-%define libname %mklibname %{name}_ %{major}
+%define libname %mklibname %{name}_
+%define oldlibname %mklibname %{name}_ 1
 %define devname %mklibname %{name} -d
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.12.0
+Version:	1.12.2
 Release:	1
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
 Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
 
-BuildRequires:	bzip2-devel
-BuildRequires:	jpeg-devel
-BuildRequires:	tiff-devel
+BuildRequires:	pkgconfig(bzip2)
+BuildRequires:	pkgconfig(libjpeg)
+BuildRequires:	pkgconfig(libtiff-4)
 BuildRequires:	ungif-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(id3tag)
@@ -32,6 +33,7 @@ rendering and blending, dynamic binary filters, scripting, and more.
 %package -n %{libname}
 Summary:	Powerful image loading and rendering library
 Group:		System/Libraries
+%rename %{oldlibname}
 Provides:	%{name} = %{EVRD}
 Requires:	%{libname}-filters = %{EVRD}
 Requires:	%{libname}-loaders = %{EVRD}
