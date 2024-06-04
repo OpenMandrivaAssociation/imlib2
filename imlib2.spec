@@ -6,7 +6,7 @@
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
 Version:	1.12.2
-Release:	1
+Release:	2
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
@@ -79,6 +79,7 @@ that need %{name}.
 %package -n %{libname}-filters
 Summary:	Imlib2 basic plugin filters set
 Group:		System/Libraries
+Obsoletes:	lib64imlib2_1-filters
 
 %description -n %{libname}-filters
 This package contains Imlib2 basic set of plugin filters.
@@ -91,6 +92,7 @@ This package contains Imlib2 basic set of plugin filters.
 %package -n %{libname}-loaders
 Summary:	Imlib2 loader for various graphic formats
 Group:		System/Libraries
+Obsoletes:	lib64imlib2_1-loaders
 
 %description -n %{libname}-loaders
 This package contains Imlib2 image loader/saver for various graphic formats,
