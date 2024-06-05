@@ -1,12 +1,13 @@
 %define major 1
-%define libname %mklibname %{name}_
+%define libname %mklibname %{name}
+%define boguslibname %mklibname %{name}_
 %define oldlibname %mklibname %{name}_ 1
 %define devname %mklibname %{name} -d
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
 Version:	1.12.2
-Release:	2
+Release:	3
 License:	Imlib2
 Group:		System/Libraries
 Url:		http://enlightenment.org/Libraries/Imlib2/
@@ -33,7 +34,10 @@ rendering and blending, dynamic binary filters, scripting, and more.
 %package -n %{libname}
 Summary:	Powerful image loading and rendering library
 Group:		System/Libraries
+# Fixed after 5.0
 %rename %{oldlibname}
+# Fixed after 5.0
+%rename %{boguslibname}
 Provides:	%{name} = %{EVRD}
 Requires:	%{libname}-filters = %{EVRD}
 Requires:	%{libname}-loaders = %{EVRD}
