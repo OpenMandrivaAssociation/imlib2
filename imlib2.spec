@@ -6,12 +6,12 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.12.2
-Release:	3
+Version:	1.12.3
+Release:	1
 License:	Imlib2
 Group:		System/Libraries
-Url:		http://enlightenment.org/Libraries/Imlib2/
-Source0:	http://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
+Url:		https://enlightenment.org/Libraries/Imlib2/
+Source0:	https://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libjpeg)
