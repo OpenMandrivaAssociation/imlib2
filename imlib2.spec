@@ -6,7 +6,7 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.12.3
+Version:	1.12.5
 Release:	1
 License:	Imlib2
 Group:		System/Libraries
