@@ -7,7 +7,7 @@
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
 Version:	1.12.5
-Release:	1
+Release:	2
 License:	Imlib2
 Group:		System/Libraries
 Url:		https://enlightenment.org/Libraries/Imlib2/
@@ -16,12 +16,25 @@ Source0:	https://sourceforge.net/projects/enlightenment/files/imlib2-src/%{versi
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libtiff-4)
+# libheif lives in restriced due to licensing
+#BuildRequires:	pkgconfig(libheif)
+BuildRequires:	pkgconfig(libopenjp2)
+# libwebp causes linker errors
+#BuildRequires:	pkgconfig(libwebp)
+#BuildRequires:	pkgconfig(libwebpdemux)
 BuildRequires:	ungif-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(id3tag)
 BuildRequires:	pkgconfig(libpng)
+BuildRequires:  pkgconfig(xcb)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(libjxl)
+BuildRequires:  pkgconfig(libjxl_threads)
+BuildRequires:  pkgconfig(librsvg-2.0) >= 2.46
+BuildRequires:  pkgconfig(libspectre)
+
 
 %description
 Imlib2 is an advanced replacement library for libraries like libXpm that
@@ -97,6 +110,7 @@ This package contains Imlib2 basic set of plugin filters.
 Summary:	Imlib2 loader for various graphic formats
 Group:		System/Libraries
 Obsoletes:	lib64imlib2_1-loaders
+Provides:	%{name}-loaders = %{version}-%{release}
 
 %description -n %{libname}-loaders
 This package contains Imlib2 image loader/saver for various graphic formats,
@@ -116,6 +130,10 @@ autoreconf -fi
 %build
 %configure \
 	--disable-static \
+	--enable-shared \
+	--with-jxl \
+	--with-svg \
+	--with-ps \
 %ifarch x86_64
 	--enable-amd64 \
 	--disable-mmx \
