@@ -13,6 +13,11 @@ Group:		System/Libraries
 Url:		https://enlightenment.org/Libraries/Imlib2/
 Source0:	https://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(bzip2)
 BuildRequires:	pkgconfig(libjpeg)
 BuildRequires:	pkgconfig(libtiff-4)
