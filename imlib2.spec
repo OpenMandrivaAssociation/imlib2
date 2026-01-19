@@ -6,11 +6,11 @@
 
 Summary:	Powerful image loading and rendering library
 Name:		imlib2
-Version:	1.12.5
-Release:	2
+Version:	1.12.6
+Release:	1
 License:	Imlib2
 Group:		System/Libraries
-Url:		https://enlightenment.org/Libraries/Imlib2/
+URL:		https://sourceforge.net/projects/enlightenment/
 Source0:	https://sourceforge.net/projects/enlightenment/files/imlib2-src/%{version}/%{name}-%{version}.tar.xz
 
 BuildRequires:	autoconf
@@ -24,9 +24,9 @@ BuildRequires:	pkgconfig(libtiff-4)
 # libheif lives in restriced due to licensing
 #BuildRequires:	pkgconfig(libheif)
 BuildRequires:	pkgconfig(libopenjp2)
-# libwebp causes linker errors
-#BuildRequires:	pkgconfig(libwebp)
-#BuildRequires:	pkgconfig(libwebpdemux)
+BuildRequires:	pkgconfig(libraw)
+BuildRequires:	pkgconfig(libwebp)
+BuildRequires:	pkgconfig(libwebpdemux)
 BuildRequires:	ungif-devel
 BuildRequires:	pkgconfig(freetype2)
 BuildRequires:	pkgconfig(id3tag)
@@ -34,11 +34,11 @@ BuildRequires:	pkgconfig(libpng)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
-BuildRequires:  pkgconfig(zlib)
-BuildRequires:  pkgconfig(libjxl)
-BuildRequires:  pkgconfig(libjxl_threads)
-BuildRequires:  pkgconfig(librsvg-2.0) >= 2.46
-BuildRequires:  pkgconfig(libspectre)
+BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(libjxl)
+BuildRequires:	pkgconfig(libjxl_threads)
+BuildRequires:	pkgconfig(librsvg-2.0) >= 2.46
+BuildRequires:	pkgconfig(libspectre)
 
 
 %description
@@ -133,9 +133,13 @@ such as jpeg, gif, tiff, xpm etc.
 autoreconf -fi
 
 %build
+# --without-heif dependency is in restricted due to its licensing
+export CFLAGS="%{optflags} -Iwebp"
+export LDFLAGS="%{ldflags} -lwebp"
 %configure \
 	--disable-static \
 	--enable-shared \
+	--without-heif \
 	--with-jxl \
 	--with-svg \
 	--with-ps \
